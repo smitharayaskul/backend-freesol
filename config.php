@@ -1,8 +1,8 @@
 <?php
 
-$user = 'Banks';
-$password = 'Bank$101';
-$database = 'freesol';
+$user = 'iruabigailo27425_mimi';
+$password = '09077331043Mira$$';
+$database = 'iruabigailo27425_freesol';
 $host = 'localhost';
 
 $conn = mysqli_connect($host, $user, $password, $database);
