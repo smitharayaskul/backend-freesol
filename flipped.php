@@ -13,14 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 include 'config.php';
 session_start();
 
-if (!isset($_SESSION['id'])){
-    echo json_encode([
-        'status' => 'error',
-        'message' => "Unknown User"
-    ]);
-    return;
-}
-
 $data = json_decode(file_get_contents("php://input"), true);
 
 $flip = $data['flip'];
