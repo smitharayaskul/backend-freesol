@@ -29,8 +29,8 @@ if (mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_assoc($result);
 
     if ($password == $user['password']) {
-        $_SESSION['user_id'] = $user['id'];
-        echo json_encode(["status" => "success", "message" => "Login successful"]);
+        $_SESSION['id'] = $user['user_id'];
+        echo json_encode(["status" => "success", "message" => "Login successful", "user_id" => $_SESSION['id']]);
     } else {
         echo json_encode(["status" => "error", "message" => "Invalid password"]);
     }
