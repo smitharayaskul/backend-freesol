@@ -19,6 +19,12 @@ $flips = [];
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
+
+        if (isset($row['created_at'])) {
+            $row['created_at'] = gmdate('c', strtotime($row['created_at']));
+            // Example output: 2025-11-11T09:42:10Z
+        }
+
         $flips[] = $row; // push each row as array
     }
 
