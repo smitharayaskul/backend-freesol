@@ -28,30 +28,6 @@ if (empty($solRec) || empty($acctRec) || empty($rebates)){
     return;
 }
 
-if (!preg_match('/^[0-9]+$/', $solRec)){
-    echo json_encode([
-        'status' => 'error',
-        'message' => "Invalid number"
-    ]);
-    return;
-}
-
-if (!preg_match('/^[0-9]+$/', $acctRec)){
-    echo json_encode([
-        'status' => 'error',
-        'message' => "Invalid number"
-    ]);
-    return;
-}
-
-if (!preg_match('/^[0-9]+$/', $rebates)){
-    echo json_encode([
-        'status' => 'error',
-        'message' => "Invalid number"
-    ]);
-    return;
-}
-
 $check = "SELECT * FROM `overview`";
 $result = mysqli_query($conn, $check);
 
